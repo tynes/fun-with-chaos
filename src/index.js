@@ -1,13 +1,24 @@
 $(() => {
-  // invoke current function here
-  var current = new Sierpinksi();
+  // initialize application here
+  $('#random-square').addClass('selected');
+  var current = new RandomSquare();
 
-  const updateView = (current, next) => {
+  const renderView = (current, next) => {
     current.remove();
     current = new next();
+  };
+
+  const handleSelect = e => {
+    $('.selected').removeClass('selected');
+    $(e.target).addClass('selected');
+  };
+
+  const updateView = (current, next, context) => {
+    handleSelect(context);
+    renderView(current, next);
   }
 
-  $('#random-square').click(() => updateView(current, RandomSquare));
-  $('#sierpinski').click(() => updateView(current, Sierpinksi));
-
+  $('#random-square').click(e => updateView(current, RandomSquare, e));
+  $('#sierpinski').click(e => updateView(current, Sierpinksi, e));
+  $('#koch').click(e => updateView(current, Koch, e));
 });
