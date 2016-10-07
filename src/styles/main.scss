@@ -1,7 +1,14 @@
-$font-stack:    Helvetica, sans-serif;
-$primary-color: #333;
+#navigation {
+  display: inline-block;
+  position: absolute;
+  width: 8em;
+  left: 0.5em;
+  top: 0.5em;
+}
 
-.test {
-  font: 100% $font-stack;
-  color: $primary-color;
+#navigation button {
+  position: relative;
+  padding: 0.5em;
+  margin: 0.3em;
+  width: 100%;
 }
