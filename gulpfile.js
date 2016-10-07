@@ -46,14 +46,25 @@ gulp.task('develop:css', cb => {
   );
 });
 
-gulp.task('watch', ['develop:js', 'develop:css'], () => {
-  gulp.watch('src/**/*.js', ['develop:js', 'develop:css']);
+gulp.task('vendor', cb => {
+  pump([
+      gulp.src('node_modules/jquery/dist/jquery.js'),
+      concat('vendor.js'),
+      gulp.dest('dist'),
+    ],
+    cb
+  );
+});
+
+gulp.task('watch', ['develop:js', 'develop:css', 'vendor'], () => {
+  gulp.watch('src/**/*.js', ['develop:js']);
+  gulp.watch('src/styles/*.scss', ['develop:css']);
 });
 
 gulp.task('deploy', cb => {
   pump([
         gulp.src('src/*.js'),
-        concat('bundle.js'),
+        concat('bundle.min.js'),
         babel({
           presets: [ 'es2015' ]
         }),

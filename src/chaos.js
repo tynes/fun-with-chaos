@@ -16,6 +16,29 @@ class Chaos {
       this.context.clearRect(0, 0, this.width, this.height);
     }
   }
+  listeners(event, actions) {
+    const { space, p, c } = actions;
+    switch(event.keyCode) {
+      case 32: // space
+        space();
+        break;
+      case 80: // p
+        p();
+        break;
+      case 67: // c
+        c();
+      default:
+        break;
+    }
+  };
+  remove() {
+    const navigation = $('#navigation').clone(true);
+    const copy = $(document.body).clone();
+    $(copy).children().remove('#navigation');
+    $(copy).prepend(navigation);
+    $(document.body).remove();
+    copy.insertAfter($('head'));
+  }
   popImage() {
     let win = window.open('', 'Canvas Image')
     let src = this.canvas.toDataURL('image/png');
