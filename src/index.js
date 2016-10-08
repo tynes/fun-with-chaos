@@ -21,4 +21,5 @@ $(() => {
   $('#random-square').click(e => updateView(current, RandomSquare, e));
   $('#sierpinski').click(e => updateView(current, Sierpinksi, e));
   $('#koch').click(e => updateView(current, Koch, e));
+  $('#simple-shape').click(e => updateView(current, SimpleShape, e));
 });
