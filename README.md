@@ -8,12 +8,20 @@ ES6 Object Oriented JavaScript design patterns, using jQuery, Gulp and Babel
 
 ## To Run
 ```$ git clone https://github.com/Tynes/fun-with-chaos.git```  
+
 Make sure to install [Gulp](https://github.com/gulpjs/gulp/blob/master/docs/getting-started.md), follow the directions 1-3 at the link  
+
+Then install the dependencies by running:  
+```npm i```  
+
 For development - in the root of the directory, run:  
 ```$ gulp watch```  
+
 This will build the appropriate files and watch for changes.  
+
 To open the file (assuming OSX), run:  
 ```$ npm run open```  
+
 This simply opens opens ```index.html``` in a web browser  
 
 ## User Guide  
