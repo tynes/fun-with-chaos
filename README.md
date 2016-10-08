@@ -11,8 +11,8 @@ ES6 Object Oriented JavaScript design patterns, using jQuery, Gulp and Babel
 
 Make sure to install [Gulp](https://github.com/gulpjs/gulp/blob/master/docs/getting-started.md), follow the directions 1-3 at the link  
 
-Then install the dependencies by running:  
-```npm i```  
+In the root of the directory, install the dependencies by running:  
+```$ npm i```  
 
 For development - in the root of the directory, run:  
 ```$ gulp watch```  
