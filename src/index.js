@@ -22,4 +22,5 @@ $(() => {
   $('#sierpinski').click(e => updateView(current, Sierpinksi, e));
   $('#koch').click(e => updateView(current, Koch, e));
   $('#simple-shape').click(e => updateView(current, SimpleShape, e));
+  $('#basic-tree').click(e => updateView(current, BasicTree, e));
 });
