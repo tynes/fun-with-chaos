@@ -5,6 +5,7 @@ const sass = require('gulp-sass');
 const uglify = require('gulp-uglify');
 const concat = require('gulp-concat');
 const sourcemaps = require('gulp-sourcemaps');
+const inject = require('gulp-inject');
 const browserSync = require('browser-sync').create();
 const pump = require('pump');
 
@@ -53,6 +54,17 @@ gulp.task('develop:css', cb => {
   );
 });
 
+// needs some tweaking
+gulp.task('develop:html', ['develop:js'], cb => {
+  pump([
+      gulp.src('src/index.html'),
+      inject(gulp.src('dist/bundle.js', { read: false })),
+      gulp.dest('dist')
+    ],
+    cb
+  );
+})
+
 gulp.task('browserSync', function() {
   browserSync.init({
     server: {
@@ -76,16 +88,31 @@ gulp.task('watch', ['develop:js', 'develop:css', 'vendor'], () => {
   gulp.watch('src/styles/*.scss', ['develop:css']);
 });
 
-gulp.task('deploy', cb => {
+gulp.task('deploy:js', cb => {
   pump([
-        gulp.src('src/*.js'),
-        concat('bundle.min.js'),
-        babel({
-          presets: [ 'es2015' ]
-        }),
-        uglify(),
-        gulp.dest('dist')
+      gulp.src('src/**/*.js'),
+      concat('bundle.min.js'),
+      babel({
+        presets: [ 'es2015' ],
+      }),
+      uglify(),
+      gulp.dest('dist')
+    ],
+  cb
+  );
+});
+
+gulp.task('deploy:css', cb => {
+  pump([
+      gulp.src('src/styles/*.scss'),
+      sass(),
+      concat('styles.css'),
+      gulp.dest('dist')
     ],
     cb
-  );
+  )
+})
+
+gulp.task('deploy', ['vendor', 'deploy:css', 'deploy:js'], cb => {
+  console.log('Build successful');
 });
