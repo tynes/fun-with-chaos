@@ -16,6 +16,7 @@ In the root of the directory, install the dependencies by running:
 
 For development - in the root of the directory, run:  
 ```$ gulp watch```  
+Note: Development requires a web browser that is ES6 ready. Download the latest version of Chrome or Chrome Canary  
 
 This will build the appropriate files and watch for changes.  
 
