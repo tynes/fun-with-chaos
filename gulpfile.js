@@ -5,7 +5,8 @@ const sass = require('gulp-sass');
 const uglify = require('gulp-uglify');
 const concat = require('gulp-concat');
 const sourcemaps = require('gulp-sourcemaps');
-var pump = require('pump');
+const browserSync = require('browser-sync').create();
+const pump = require('pump');
 
 gulp.task('default', () => {
   return gulp.src('src/index.js')
@@ -27,7 +28,10 @@ gulp.task('develop:js', cb => {
       sourcemaps.init(),
       concat('bundle.js'),
       sourcemaps.write(),
-      gulp.dest('dist')
+      gulp.dest('dist'),
+      browserSync.reload({
+        stream: true,
+      })
     ],
     cb
   );
@@ -40,10 +44,21 @@ gulp.task('develop:css', cb => {
       sass(),
       concat('styles.css'),
       sourcemaps.write(),
-      gulp.dest('dist')
+      gulp.dest('dist'),
+      browserSync.reload({
+        stream: true,
+      })
     ],
     cb
   );
+});
+
+gulp.task('browserSync', function() {
+  browserSync.init({
+    server: {
+      baseDir: `${__dirname}/dist`
+    },
+  });
 });
 
 gulp.task('vendor', cb => {
