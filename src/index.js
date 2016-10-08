@@ -23,4 +23,5 @@ $(() => {
   $('#koch').click(e => updateView(current, Koch, e));
   $('#simple-shape').click(e => updateView(current, SimpleShape, e));
   $('#basic-tree').click(e => updateView(current, BasicTree, e));
+  $('#pythagorean-tree').click(e => updateView(current, PythangoreanTree, e));
 });
